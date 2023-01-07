@@ -3,13 +3,12 @@ const controllers = {};
 
 controllers.list =  (req, res) => {
     // res.send('Hello World!!!');
-    conn.query('SELECT * FROM customer', (err, row) => {
-        if (err) {
-            res.json(err);
-        }
-        console.log("🚀 ~ file: controller.js:7 ~ conn.query ~ row", row);
+    const [rows, fields] = conn.query('SELECT * FROM customer');
+    if (rows.length > 0){
+        console.log(rows[0]);
         res.render('customer');
-    })
+    }
+
 }
 
 export default controllers;
